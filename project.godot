@@ -14,6 +14,12 @@ config/name="BossRushJam2025"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+
 [dotnet]
 
 project/assembly_name="BossRushJam2025"
