@@ -22,6 +22,7 @@ var max_air_velocity = 10000
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+	## Override this method
 func get_cursor_pos() -> Vector2:
 	return Vector2.ZERO
 
@@ -69,10 +70,8 @@ func rotate_weapon( dir_to_mouse: Vector2 ):
 
 func damage( damage_value: int, knockback = Vector2.ZERO ):
 	
-	print( "damage dealt: ", damage_value )
-	
 	velocity += knockback
 	
 	on_take_damage.emit()
-	
+
 	pass

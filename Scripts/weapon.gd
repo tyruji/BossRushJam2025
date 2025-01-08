@@ -54,11 +54,19 @@ func _on_body_shape_entered( body_rid: RID, body: Node2D,
 			# As of now, lets not allow anchoring on the enemy
 		return
 	
+	handle_damage_dealing( body )
+	
 	handle_anchoring( body_rid, body, body_shape_index, local_shape_index )
 	
 func handle_damage_dealing( body: Node2D ):
 	if( attacking_swing && body.has_method( "damage" ) ):
-		var dir_to_body = ( body.global_position - get_local_weapon_tip_pos() ).normalized()
+		
+		#var dir_to_body = ( body.global_position - get_local_weapon_tip_pos() ).normalized()
+		
+			# Either get the direction from the tip of the weapon
+			# or from the center of the attacking character
+		var dir_to_body = ( body.global_position - global_position ).normalized()
+		
 		body.damage( weapon_damage, dir_to_body * weapon_knockback )
 
 func handle_anchoring( body_rid: RID, body: Node2D, 
