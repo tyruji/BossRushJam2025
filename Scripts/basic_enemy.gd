@@ -8,8 +8,10 @@ var cursor_rotator = $CursorRotator
 var player = $"../Player"
 
 func _process( delta: float ) -> void:
+	super._process( delta )
+	
 	var dir_to_player = player.global_position - global_position
-	var dist_to_slash_player = 200
+	var dist_to_slash_player = 500
 	
 	if( dir_to_player.length_squared() > dist_to_slash_player * dist_to_slash_player ):
 		cursor_rotator.normal_rotation()
