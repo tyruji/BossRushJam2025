@@ -1,63 +1,80 @@
-[gd_scene load_steps=30 format=4 uid="uid://c6rfhnxgiqy2x"]
+[gd_scene load_steps=44 format=4 uid="uid://c6rfhnxgiqy2x"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_7js2w"]
-[ext_resource type="Texture2D" uid="uid://psg60l5gibtf" path="res://icon.svg" id="1_8cl5s"]
+[ext_resource type="Script" path="res://Scripts/character_sound_handler.gd" id="1_qtu2c"]
+[ext_resource type="AudioStream" uid="uid://dg4gxj4d4yvxn" path="res://Sounds/389636__stubb__thump-1.wav" id="2_0gxgr"]
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="2_oi7la"]
-[ext_resource type="Texture2D" uid="uid://dnmd3uuldxeuh" path="res://Textures/Particles/trace_01.png" id="4_iex56"]
-[ext_resource type="Script" path="res://Scripts/slash_particles.gd" id="5_odfrv"]
+[ext_resource type="PackedScene" uid="uid://cav13tt7tuc7e" path="res://Prefabs/swing_particles.tscn" id="5_73qjf"]
 [ext_resource type="Script" path="res://Scripts/basic_enemy.gd" id="6_hnh36"]
 [ext_resource type="Script" path="res://Scripts/cursor_rotator.gd" id="7_6ih4p"]
 [ext_resource type="Texture2D" uid="uid://dfdloenfjjylj" path="res://Textures/gnome.svg" id="7_in8ut"]
 [ext_resource type="Texture2D" uid="uid://dqbf4tcl7nnwg" path="res://Textures/gnome_axe.svg" id="8_3x6tx"]
 [ext_resource type="Texture2D" uid="uid://djddxcingb8xx" path="res://Textures/gnome2.svg" id="8_3xxsl"]
+[ext_resource type="AudioStream" uid="uid://dgfqcl8vrrngo" path="res://Sounds/680314__deltacode__heave.wav" id="8_h4l17"]
 [ext_resource type="Texture2D" uid="uid://d4f3ikp4ybeyt" path="res://Textures/gnome2_axe.svg" id="9_lus06"]
+[ext_resource type="AudioStream" uid="uid://v8fosfsxv1kg" path="res://Sounds/395340__ihitokage__woosh-5.ogg" id="10_ehufc"]
+[ext_resource type="AudioStream" uid="uid://ds16xdsnr7a88" path="res://Sounds/515624__mrickey13__playerhurt2.wav" id="10_yj0ef"]
+[ext_resource type="AudioStream" uid="uid://boi2taauxcmyq" path="res://Sounds/100466__hoot_avi__smash.wav" id="11_62rjy"]
 [ext_resource type="Texture2D" uid="uid://bhu3djsiu266v" path="res://Textures/gnome3.svg" id="11_eb0vp"]
 [ext_resource type="Script" path="res://Scripts/camera_follow_player.gd" id="12_2hn17"]
+[ext_resource type="Script" path="res://Scripts/character_particle_handler.gd" id="12_8g2up"]
 [ext_resource type="Texture2D" uid="uid://bh24j4gqpinrf" path="res://Textures/gnome3_axe.svg" id="12_fnrg6"]
+[ext_resource type="Texture2D" uid="uid://b6805geye6ruv" path="res://Textures/Particles/star_07.png" id="13_6sneu"]
+[ext_resource type="Texture2D" uid="uid://dprsebljf5g7a" path="res://Textures/gnome4.svg" id="13_edpfh"]
+[ext_resource type="Texture2D" uid="uid://cg8anbmf3e6c6" path="res://Textures/gnome4_axe.svg" id="14_atbpx"]
 [ext_resource type="Texture2D" uid="uid://bepej8a18jr6f" path="res://Textures/tileset.svg" id="15_lnd5v"]
+[ext_resource type="Texture2D" uid="uid://bxx7u0mbpv8xr" path="res://Textures/background/layer6.svg" id="15_q55g1"]
+[ext_resource type="Texture2D" uid="uid://d3prx85d7ddm7" path="res://Textures/background/layer8_top.svg" id="15_u52bg"]
+[ext_resource type="Texture2D" uid="uid://bsx4fh36aanjj" path="res://Textures/background/layer7_bottom.svg" id="16_x6m52"]
+[ext_resource type="Texture2D" uid="uid://dchjwb4lt3sue" path="res://Textures/background/layer5.svg" id="16_yw7k2"]
+[ext_resource type="Texture2D" uid="uid://brqb3x7r8j8hr" path="res://Textures/background/layer4.svg" id="17_udfi7"]
+[ext_resource type="Texture2D" uid="uid://cp63tqe8cp5wf" path="res://Textures/background/layer3.svg" id="18_gf2qw"]
+[ext_resource type="Texture2D" uid="uid://dka5kmmr2fu7m" path="res://Textures/background/layer2.svg" id="19_xc3l1"]
+[ext_resource type="Texture2D" uid="uid://d4k7s6uqkn070" path="res://Textures/background/layer1.svg" id="20_puu5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hpc56"]
 size = Vector2(191, 368)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4onwi"]
 
-[sub_resource type="Curve" id="Curve_fbc7s"]
-_data = [Vector2(0, 0.152174), 0.0, 0.0, 0, 0, Vector2(0.528358, 0.228555), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Gradient" id="Gradient_pqpjn"]
+offsets = PackedFloat32Array(0.13355, 0.241042)
+colors = PackedColorArray(3, 2, 1, 1, 2, 2, 0, 1)
 
-[sub_resource type="CurveTexture" id="CurveTexture_dxiwx"]
-curve = SubResource("Curve_fbc7s")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4af2y"]
+gradient = SubResource("Gradient_pqpjn")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hoa2p"]
-lifetime_randomness = 1.0
-emission_shape_scale = Vector3(15.39, 1, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-gravity = Vector3(0, 0, 0)
-scale_min = 0.7
-scale_max = 0.7
-alpha_curve = SubResource("CurveTexture_dxiwx")
+[sub_resource type="Curve" id="Curve_vqjxj"]
+_data = [Vector2(0.00895522, 0.0146886), 0.0, -0.142153, 0, 0, Vector2(0.0835821, 0.96181), 0.0, 0.0, 0, 0, Vector2(0.18209, 0.877791), -2.27445, -2.27445, 0, 0, Vector2(0.99403, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_rrpyk"]
+curve = SubResource("Curve_vqjxj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2k563"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 22.21
+angle_min = -141.3
+angle_max = 210.8
+direction = Vector3(0, -2.83, 0)
+initial_velocity_min = 535.98
+initial_velocity_max = 948.51
+angular_velocity_min = -20.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 2000, 0)
+scale_curve = SubResource("CurveTexture_rrpyk")
+color = Color(2, 2, 2, 1)
+color_ramp = SubResource("GradientTexture1D_4af2y")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2yty"]
 size = Vector2(207, 414.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7vy8"]
-size = Vector2(1916, 37)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpsl4"]
-size = Vector2(1919.14, 36.4045)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v142y"]
-size = Vector2(1069.97, 36.404)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6faq"]
-size = Vector2(1053.92, 36.404)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krpnq"]
+size = Vector2(161, 342)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3nky"]
 size = Vector2(470, 384)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjdlu"]
-size = Vector2(3619, 127.004)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4img"]
 texture = ExtResource("15_lnd5v")
@@ -98,275 +115,263 @@ sources/1 = SubResource("TileSetAtlasSource_x4img")
 
 [node name="Test_BaseMechanics" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="Characters"]
 position = Vector2(315, 689)
 script = ExtResource("1_7js2w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player"]
 position = Vector2(0.5, -52.875)
 shape = SubResource("RectangleShape2D_hpc56")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Characters/Player"]
 position = Vector2(0, -53.875)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_in8ut")
 
-[node name="Weapon" type="Area2D" parent="Player"]
+[node name="Weapon" type="Area2D" parent="Characters/Player"]
 rotation = 3.14159
 script = ExtResource("2_oi7la")
+weapon_knockback = 45000
 
-[node name="CollisionPoint" type="CollisionShape2D" parent="Player/Weapon"]
+[node name="CollisionPoint" type="CollisionShape2D" parent="Characters/Player/Weapon"]
 position = Vector2(64.9994, 234)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/Weapon"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Characters/Player/Weapon"]
 position = Vector2(66.999, 392)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Player/Weapon"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Characters/Player/Weapon"]
 position = Vector2(-59.001, 393)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Player/Weapon"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Characters/Player/Weapon"]
 position = Vector2(-59.0006, 232)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Player/Weapon"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Characters/Player/Weapon"]
 position = Vector2(74.9992, 313)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Player/Weapon"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Characters/Player/Weapon"]
 position = Vector2(-70.0008, 315)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player/Weapon"]
+[node name="Sprite2D" type="Sprite2D" parent="Characters/Player/Weapon"]
 position = Vector2(2.99956, 160.393)
 rotation = 3.14159
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_3x6tx")
 
-[node name="Marker2D" type="Marker2D" parent="Player/Weapon"]
+[node name="WeaponTip" type="Marker2D" parent="Characters/Player/Weapon"]
 position = Vector2(2.99899, 397.393)
 scale = Vector2(-0.0282415, -314.861)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Player/Weapon"]
-position = Vector2(1.99927, 288.393)
-rotation = -3.14159
-emitting = false
-amount = 128
-process_material = SubResource("ParticleProcessMaterial_hoa2p")
-texture = ExtResource("4_iex56")
-lifetime = 0.5
-randomness = 1.0
-script = ExtResource("5_odfrv")
+[node name="GPUParticles2D" parent="Characters/Player/Weapon" instance=ExtResource("5_73qjf")]
 
-[node name="BasicEnemy" type="CharacterBody2D" parent="."]
-position = Vector2(3142, -165)
+[node name="CharacterSoundHandler" type="Node2D" parent="Characters/Player"]
+script = ExtResource("1_qtu2c")
+
+[node name="ThumpSound" type="AudioStreamPlayer2D" parent="Characters/Player/CharacterSoundHandler"]
+stream = ExtResource("2_0gxgr")
+
+[node name="GruntSound" type="AudioStreamPlayer2D" parent="Characters/Player/CharacterSoundHandler"]
+stream = ExtResource("8_h4l17")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="Characters/Player/CharacterSoundHandler"]
+stream = ExtResource("10_yj0ef")
+
+[node name="SwingSound" type="AudioStreamPlayer2D" parent="Characters/Player/CharacterSoundHandler"]
+stream = ExtResource("10_ehufc")
+
+[node name="AttackHitSound" type="AudioStreamPlayer2D" parent="Characters/Player/CharacterSoundHandler"]
+stream = ExtResource("11_62rjy")
+
+[node name="CharacterParticleHandler" type="Node2D" parent="Characters/Player"]
+script = ExtResource("12_8g2up")
+
+[node name="AttackHitParticles" type="GPUParticles2D" parent="Characters/Player/CharacterParticleHandler"]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_2k563")
+texture = ExtResource("13_6sneu")
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.55
+
+[node name="BasicEnemy" type="CharacterBody2D" parent="Characters"]
+position = Vector2(6072, -574)
 script = ExtResource("6_hnh36")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEnemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/BasicEnemy"]
 position = Vector2(0.5, -52.875)
 shape = SubResource("RectangleShape2D_hpc56")
 
-[node name="Sprite2D" type="Sprite2D" parent="BasicEnemy"]
+[node name="Sprite2D" type="Sprite2D" parent="Characters/BasicEnemy"]
 position = Vector2(0, -53.875)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_3xxsl")
 
-[node name="Weapon" type="Area2D" parent="BasicEnemy"]
+[node name="Weapon" type="Area2D" parent="Characters/BasicEnemy"]
 rotation = 3.14159
 script = ExtResource("2_oi7la")
 
-[node name="CollisionPoint2" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint2" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(252.999, 298.001)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint3" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint3" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(-243.001, 298.999)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint4" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint4" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(-106.001, 381)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint5" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint5" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(107.999, 380)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint6" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint6" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(184.999, 311)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint7" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint7" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(-177.001, 312)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint8" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint8" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(44.9993, 309)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint9" type="CollisionShape2D" parent="BasicEnemy/Weapon"]
+[node name="CollisionPoint9" type="CollisionShape2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(-41.0007, 311)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="Sprite2D" type="Sprite2D" parent="BasicEnemy/Weapon"]
+[node name="Sprite2D" type="Sprite2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(2.99956, 160.393)
 rotation = 3.14159
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("9_lus06")
 
-[node name="Marker2D" type="Marker2D" parent="BasicEnemy/Weapon"]
+[node name="WeaponTip" type="Marker2D" parent="Characters/BasicEnemy/Weapon"]
 position = Vector2(2.99899, 397.393)
 scale = Vector2(-0.0282415, -314.861)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="BasicEnemy/Weapon"]
-position = Vector2(1.99927, 288.393)
-rotation = -3.14159
-emitting = false
-amount = 128
-process_material = SubResource("ParticleProcessMaterial_hoa2p")
-texture = ExtResource("4_iex56")
-lifetime = 0.5
-randomness = 1.0
-script = ExtResource("5_odfrv")
+[node name="GPUParticles2D" parent="Characters/BasicEnemy/Weapon" instance=ExtResource("5_73qjf")]
 
-[node name="CursorRotator" type="Marker2D" parent="BasicEnemy"]
+[node name="CursorRotator" type="Marker2D" parent="Characters/BasicEnemy"]
 script = ExtResource("7_6ih4p")
 
-[node name="Cursor" type="Marker2D" parent="BasicEnemy/CursorRotator"]
+[node name="Cursor" type="Marker2D" parent="Characters/BasicEnemy/CursorRotator"]
 position = Vector2(-3, -442)
 
-[node name="BasicEnemy2" type="CharacterBody2D" parent="."]
-position = Vector2(2243, 175)
+[node name="BasicEnemy2" type="CharacterBody2D" parent="Characters"]
+position = Vector2(5173, -234)
 script = ExtResource("6_hnh36")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEnemy2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/BasicEnemy2"]
 position = Vector2(0.5, -52.875)
 shape = SubResource("RectangleShape2D_a2yty")
 
-[node name="Sprite2D" type="Sprite2D" parent="BasicEnemy2"]
+[node name="Sprite2D" type="Sprite2D" parent="Characters/BasicEnemy2"]
 position = Vector2(0, -53.875)
 texture = ExtResource("11_eb0vp")
 
-[node name="Weapon" type="Area2D" parent="BasicEnemy2"]
+[node name="Weapon" type="Area2D" parent="Characters/BasicEnemy2"]
 rotation = 3.14159
 script = ExtResource("2_oi7la")
 
-[node name="CollisionPoint10" type="CollisionShape2D" parent="BasicEnemy2/Weapon"]
+[node name="CollisionPoint10" type="CollisionShape2D" parent="Characters/BasicEnemy2/Weapon"]
 position = Vector2(38.9989, 402)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint11" type="CollisionShape2D" parent="BasicEnemy2/Weapon"]
+[node name="CollisionPoint11" type="CollisionShape2D" parent="Characters/BasicEnemy2/Weapon"]
 position = Vector2(-28.0011, 407)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionPoint12" type="CollisionShape2D" parent="BasicEnemy2/Weapon"]
+[node name="CollisionPoint12" type="CollisionShape2D" parent="Characters/BasicEnemy2/Weapon"]
 position = Vector2(3.99881, 448)
 shape = SubResource("CircleShape2D_4onwi")
 
-[node name="Sprite2D" type="Sprite2D" parent="BasicEnemy2/Weapon"]
+[node name="Sprite2D" type="Sprite2D" parent="Characters/BasicEnemy2/Weapon"]
 position = Vector2(2.99956, 160.393)
 rotation = 3.14159
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("12_fnrg6")
 
-[node name="Marker2D" type="Marker2D" parent="BasicEnemy2/Weapon"]
+[node name="WeaponTip" type="Marker2D" parent="Characters/BasicEnemy2/Weapon"]
 position = Vector2(2.99899, 397.393)
 scale = Vector2(-0.0282415, -314.861)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="BasicEnemy2/Weapon"]
-position = Vector2(1.99927, 288.393)
-rotation = -3.14159
-emitting = false
-amount = 128
-process_material = SubResource("ParticleProcessMaterial_hoa2p")
-texture = ExtResource("4_iex56")
-lifetime = 0.5
-randomness = 1.0
-script = ExtResource("5_odfrv")
+[node name="GPUParticles2D" parent="Characters/BasicEnemy2/Weapon" instance=ExtResource("5_73qjf")]
 
-[node name="CursorRotator" type="Marker2D" parent="BasicEnemy2"]
+[node name="CursorRotator" type="Marker2D" parent="Characters/BasicEnemy2"]
 script = ExtResource("7_6ih4p")
 
-[node name="Cursor" type="Marker2D" parent="BasicEnemy2/CursorRotator"]
+[node name="Cursor" type="Marker2D" parent="Characters/BasicEnemy2/CursorRotator"]
 position = Vector2(-3, -442)
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(12799, -1922)
+[node name="BasicEnemy3" type="CharacterBody2D" parent="Characters"]
+position = Vector2(4409, -580)
+script = ExtResource("6_hnh36")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(860, 107.5)
-shape = SubResource("RectangleShape2D_t7vy8")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/BasicEnemy3"]
+position = Vector2(-0.5, -54)
+shape = SubResource("RectangleShape2D_krpnq")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D"]
-modulate = Color(0.262932, 0.262932, 0.262932, 1)
-position = Vector2(4, 0.5)
-scale = Vector2(15.0312, 0.289062)
-texture = ExtResource("1_8cl5s")
+[node name="Sprite2D" type="Sprite2D" parent="Characters/BasicEnemy3"]
+position = Vector2(0, -53.875)
+texture = ExtResource("13_edpfh")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
-position = Vector2(757.5, -1405.5)
-rotation = -0.505216
-shape = SubResource("RectangleShape2D_dpsl4")
+[node name="Weapon" type="Area2D" parent="Characters/BasicEnemy3"]
+rotation = 3.14159
+script = ExtResource("2_oi7la")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Floor/CollisionShape2D2"]
-modulate = Color(0.262932, 0.262932, 0.262932, 1)
-position = Vector2(-4.59955, 2.60291)
-scale = Vector2(15.0625, 0.289062)
-texture = ExtResource("1_8cl5s")
+[node name="CollisionPoint10" type="CollisionShape2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(57.9987, 470)
+shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Floor"]
-position = Vector2(3511, -634)
-shape = SubResource("RectangleShape2D_dpsl4")
+[node name="CollisionPoint11" type="CollisionShape2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(26.999, 352)
+shape = SubResource("CircleShape2D_4onwi")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Floor/CollisionShape2D5"]
-modulate = Color(0.262932, 0.262932, 0.262932, 1)
-position = Vector2(0.25, -1)
-scale = Vector2(15.0625, 0.289062)
-texture = ExtResource("1_8cl5s")
+[node name="CollisionPoint12" type="CollisionShape2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(-40.0013, 480)
+shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Floor"]
-position = Vector2(2555, -1862)
-shape = SubResource("RectangleShape2D_dpsl4")
+[node name="CollisionPoint13" type="CollisionShape2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(40.9987, 489)
+shape = SubResource("CircleShape2D_4onwi")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Floor/CollisionShape2D6"]
-modulate = Color(0.262932, 0.262932, 0.262932, 1)
-position = Vector2(0.25, -1)
-scale = Vector2(15.0625, 0.289062)
-texture = ExtResource("1_8cl5s")
+[node name="CollisionPoint14" type="CollisionShape2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(-39.001, 394)
+shape = SubResource("CircleShape2D_4onwi")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="Floor"]
-position = Vector2(3906, -1299)
-rotation = 0.965812
-shape = SubResource("RectangleShape2D_dpsl4")
+[node name="CollisionPoint15" type="CollisionShape2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(42.9989, 399)
+shape = SubResource("CircleShape2D_4onwi")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Floor/CollisionShape2D7"]
-modulate = Color(0.262932, 0.262932, 0.262932, 1)
-position = Vector2(0.25, -1)
-scale = Vector2(15.0625, 0.289062)
-texture = ExtResource("1_8cl5s")
+[node name="Sprite2D" type="Sprite2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(9.99944, 209)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("14_atbpx")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor"]
-position = Vector2(-78.0008, -408.5)
-rotation = 1.57079
-shape = SubResource("RectangleShape2D_v142y")
+[node name="WeaponTip" type="Marker2D" parent="Characters/BasicEnemy3/Weapon"]
+position = Vector2(2.99899, 397.393)
+scale = Vector2(-0.0282415, -314.861)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Floor/CollisionShape2D3"]
-modulate = Color(0.262932, 0.262932, 0.262932, 1)
-position = Vector2(-5.93335, -0.000518799)
-scale = Vector2(8.27449, 0.289062)
-texture = ExtResource("1_8cl5s")
+[node name="GPUParticles2D" parent="Characters/BasicEnemy3/Weapon" instance=ExtResource("5_73qjf")]
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor"]
-position = Vector2(2189, -269)
-rotation = 2.35619
-shape = SubResource("RectangleShape2D_q6faq")
+[node name="CursorRotator" type="Marker2D" parent="Characters/BasicEnemy3"]
+script = ExtResource("7_6ih4p")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Floor/CollisionShape2D4"]
-modulate = Color(0.262932, 0.262932, 0.262932, 1)
-position = Vector2(-0.334961, -1.99988)
-scale = Vector2(8.38539, 0.289062)
-texture = ExtResource("1_8cl5s")
+[node name="Cursor" type="Marker2D" parent="Characters/BasicEnemy3/CursorRotator"]
+position = Vector2(-3, -442)
 
 [node name="CameraFollowPlayer" type="CharacterBody2D" parent="."]
 position = Vector2(893, 294)
@@ -381,45 +386,8 @@ shape = SubResource("RectangleShape2D_p3nky")
 [node name="Camera2D" type="Camera2D" parent="CameraFollowPlayer"]
 zoom = Vector2(0.5, 0.5)
 
-[node name="CameraBoundaryColliiders" type="StaticBody2D" parent="."]
-position = Vector2(12702, -2870)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaryColliiders"]
-position = Vector2(-64.5022, 544.5)
-rotation = 1.57079
-shape = SubResource("RectangleShape2D_xjdlu")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBoundaryColliiders"]
-position = Vector2(1783, -1004)
-rotation = 3.14159
-shape = SubResource("RectangleShape2D_xjdlu")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBoundaryColliiders"]
-position = Vector2(805, -522)
-rotation = 2.63695
-shape = SubResource("RectangleShape2D_xjdlu")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="CameraBoundaryColliiders"]
-position = Vector2(1434, 1658)
-rotation = 2.35138
-shape = SubResource("RectangleShape2D_xjdlu")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="CameraBoundaryColliiders"]
-position = Vector2(973, 1135)
-rotation = 3.13647
-shape = SubResource("RectangleShape2D_xjdlu")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="CameraBoundaryColliiders"]
-position = Vector2(4471, 388)
-rotation = 3.13972
-shape = SubResource("RectangleShape2D_xjdlu")
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="CameraBoundaryColliiders"]
-position = Vector2(4055, -408)
-rotation = 4.10372
-shape = SubResource("RectangleShape2D_xjdlu")
+[node name="AudioListener2D" type="AudioListener2D" parent="CameraFollowPlayer/Camera2D"]
+current = true
 
 [node name="CollidingLayer0" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD9/wMAAQACAAIAAAD9/wQAAQACAAEAAAD9/wUAAQACAAIAAAD+/wMAAQACAAIAAAD+/wQAAQACAAEAAAD+/wUAAQACAAIAAAD//wMAAQADAAIAAAD//wQAAQACAAEAAAD//wUAAQACAAIAAAAAAAMAAQAEAAIAAAAAAAQAAQACAAEAAAAAAAUAAQACAAIAAAABAAMAAQACAAAAAAABAAQAAQACAAEAAAABAAUAAQACAAIAAAACAAMAAQACAAAAAAACAAQAAQACAAEAAAACAAUAAQACAAIAAAADAAMAAQACAAAAAAADAAQAAQACAAEAAAADAAUAAQACAAIAAAAEAAMAAQACAAAAAAAEAAQAAQACAAEAAAAEAAUAAQACAAIAAAAFAAMAAQACAAAAAAAFAAQAAQACAAEAAAAFAAUAAQACAAIAAAAGAAMAAQACAAAAAAAGAAQAAQACAAEAAAAGAAUAAQACAAIAAAAHAAMAAQACAAAAAAAHAAQAAQACAAEAAAAHAAUAAQACAAIAAAAIAAMAAQACAAAAAAAIAAQAAQACAAEAAAAIAAUAAQACAAIAAAAJAAMAAQACAAAAAAAJAAQAAQACAAEAAAAJAAUAAQACAAIAAAAKAAMAAQACAAAAAAAKAAQAAQACAAEAAAAKAAUAAQACAAIAAAALAAMAAQACAAAAAAALAAQAAQACAAEAAAALAAUAAQACAAIAAAAMAAMAAQACAAAAAAAMAAQAAQACAAEAAAAMAAUAAQACAAIAAAANAAMAAQACAAAAAAANAAQAAQACAAEAAAANAAUAAQACAAIAAAAOAAMAAQACAAAAAAAOAAQAAQACAAEAAAAOAAUAAQACAAIAAAAPAAMAAQACAAAAAAAPAAQAAQACAAEAAAAPAAUAAQACAAIAAAAQAAMAAQACAAAAAAAQAAQAAQACAAEAAAAQAAUAAQACAAIAAAARAAMAAQACAAAAAAARAAQAAQACAAEAAAARAAUAAQACAAIAAAASAAMAAQACAAAAAAASAAQAAQACAAEAAAASAAUAAQACAAIAAAATAAMAAQACAAAAAAATAAQAAQACAAEAAAATAAUAAQACAAIAAAAUAAMAAQAAAAIAAAAUAAQAAQACAAEAAAAUAAUAAQACAAIAAAAVAAMAAQABAAIAAAAVAAQAAQACAAEAAAAVAAUAAQACAAIAAAAWAAMAAQACAAIAAAAWAAQAAQACAAEAAAAWAAUAAQACAAIAAAD7/wMAAQAAAAIAAAD7/wQAAQABAAEAAAD7/wUAAQABAAIAAAD8/wMAAQABAAIAAAD8/wQAAQACAAEAAAD8/wUAAQACAAIAAAD8/wEAAQAAAAIAAAD8/wIAAQABAAEAAAD9/wEAAQABAAIAAAD9/wIAAQACAAEAAAD+/wIAAQACAAEAAAD//wIAAQADAAEAAAAAAAIAAQAEAAEAAAD+/wAAAQADAAEAAAD+/wEAAQADAAIAAAD//wEAAQAEAAIAAAD9////AQABAAAAAAD9/wAAAQABAAEAAAD+////AQADAAAAAAAXAAMAAQACAAIAAAAXAAQAAQACAAEAAAAXAAUAAQACAAIAAAAYAAMAAQACAAIAAAAYAAQAAQACAAEAAAAYAAUAAQACAAIAAAAZAAMAAQACAAIAAAAZAAQAAQACAAEAAAAZAAUAAQACAAIAAAAaAAMAAQACAAIAAAAaAAQAAQACAAEAAAAaAAUAAQACAAIAAAAbAAMAAQADAAIAAAAbAAQAAQACAAEAAAAbAAUAAQACAAIAAAAcAAQAAQADAAEAAAAcAAUAAQADAAIAAAAYAAEAAQABAAIAAAAYAAIAAQACAAEAAAAZAAEAAQACAAIAAAAZAAIAAQACAAEAAAAaAAEAAQADAAIAAAAaAAIAAQACAAEAAAAbAAEAAQAEAAIAAAAbAAIAAQADAAEAAAAcAAEAAQAEAAAAAAAcAAIAAQAEAAEAAAAcAAMAAQAEAAIAAAAXAAEAAQAAAAIAAAAXAAIAAQACAAEAAAAdAAMAAQAEAAAAAAAdAAQAAQAEAAEAAAAdAAUAAQAEAAIAAAAUAAEAAQAAAAAAAAAUAAIAAQAAAAEAAAAVAAEAAQABAAAAAAAVAAIAAQABAAEAAAAWAAEAAQACAAAAAAAWAAIAAQACAAEAAAAXAP//AQAAAAAAAAAXAAAAAQAAAAEAAAAYAP//AQABAAAAAAAYAAAAAQABAAEAAAAZAP//AQACAAAAAAAZAAAAAQACAAEAAAAaAP//AQADAAAAAAAaAAAAAQADAAEAAAAbAP//AQAEAAAAAAAbAAAAAQAEAAEAAAD8////AQAAAAAAAAD8/wAAAQAAAAEAAAD7/wEAAQAAAAAAAAD7/wIAAQAAAAEAAAD6/wMAAQAAAAAAAAD6/wQAAQAAAAEAAAD6/wUAAQAAAAIAAAD//wAAAQAEAAEAAAD/////AQAEAAAAAAA=")
@@ -429,21 +397,93 @@ tile_set = SubResource("TileSet_3lgrq")
 tile_map_data = PackedByteArray("AAD/////AQAEAAAAAAAAAP//AQAEAAAAAAADAAMAAQAFAAEAAAAEAAMAAQAGAAEAAAAJAAMAAQAFAAAAAAAPAAMAAQAFAAAAAAATAAMAAQAFAAAAAAAWAAEAAQAFAAAAAAAaAP//AQAFAAAAAAD+////AQAFAAAAAAACAAMAAQAGAAAAAAAMAAMAAQAGAAAAAAAXAAEAAQAGAAAAAAAXAAMAAQAGAAAAAAAZAAMAAQAGAAAAAAAOAAMAAQAHAAAAAAAAAAMAAQAHAAAAAAAIAAMAAQAIAAEAAAAYAAMAAQAIAAEAAAAZAP//AQAIAAEAAAD8/wEAAQAIAAEAAAD9////AQAIAAAAAAARAAMAAQAIAAAAAAA=")
 tile_set = SubResource("TileSet_3lgrq")
 
-[connection signal="body_shape_entered" from="Player/Weapon" to="Player/Weapon" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="Player/Weapon" to="Player/Weapon" method="_on_body_shape_exited"]
-[connection signal="on_anchor_remove" from="Player/Weapon" to="Player" method="_on_weapon_on_anchor_remove"]
-[connection signal="on_anchor_set" from="Player/Weapon" to="Player" method="_on_weapon_on_anchor_set"]
-[connection signal="on_weapon_swing_start" from="Player/Weapon" to="Player/Weapon/GPUParticles2D" method="_on_weapon_on_weapon_swing_start"]
-[connection signal="on_weapon_swing_stop" from="Player/Weapon" to="Player/Weapon/GPUParticles2D" method="_on_weapon_on_weapon_swing_stop"]
-[connection signal="body_shape_entered" from="BasicEnemy/Weapon" to="BasicEnemy/Weapon" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="BasicEnemy/Weapon" to="BasicEnemy/Weapon" method="_on_body_shape_exited"]
-[connection signal="on_anchor_remove" from="BasicEnemy/Weapon" to="BasicEnemy" method="_on_weapon_on_anchor_remove"]
-[connection signal="on_anchor_set" from="BasicEnemy/Weapon" to="BasicEnemy" method="_on_weapon_on_anchor_set"]
-[connection signal="on_weapon_swing_start" from="BasicEnemy/Weapon" to="BasicEnemy/Weapon/GPUParticles2D" method="_on_weapon_on_weapon_swing_start"]
-[connection signal="on_weapon_swing_stop" from="BasicEnemy/Weapon" to="BasicEnemy/Weapon/GPUParticles2D" method="_on_weapon_on_weapon_swing_stop"]
-[connection signal="body_shape_entered" from="BasicEnemy2/Weapon" to="BasicEnemy2/Weapon" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="BasicEnemy2/Weapon" to="BasicEnemy2/Weapon" method="_on_body_shape_exited"]
-[connection signal="on_anchor_remove" from="BasicEnemy2/Weapon" to="BasicEnemy2" method="_on_weapon_on_anchor_remove"]
-[connection signal="on_anchor_set" from="BasicEnemy2/Weapon" to="BasicEnemy2" method="_on_weapon_on_anchor_set"]
-[connection signal="on_weapon_swing_start" from="BasicEnemy2/Weapon" to="BasicEnemy2/Weapon/GPUParticles2D" method="_on_weapon_on_weapon_swing_start"]
-[connection signal="on_weapon_swing_stop" from="BasicEnemy2/Weapon" to="BasicEnemy2/Weapon/GPUParticles2D" method="_on_weapon_on_weapon_swing_stop"]
+[node name="Bg" type="Node2D" parent="."]
+position = Vector2(1279, -1485)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(0, -240.715)
+transform = Transform2D(1, 0, 0, 1, 0, -240.715)
+scroll_ignore_camera_zoom = true
+
+[node name="Layer8" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0.1)
+motion_offset = Vector2(0, -1225)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer8" type="Sprite2D" parent="ParallaxBackground/Layer8"]
+texture = ExtResource("15_u52bg")
+centered = false
+
+[node name="Layer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0.1)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer6" type="Sprite2D" parent="ParallaxBackground/Layer6"]
+texture = ExtResource("15_q55g1")
+centered = false
+
+[node name="Layer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.1)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer5" type="Sprite2D" parent="ParallaxBackground/Layer5"]
+texture = ExtResource("16_yw7k2")
+centered = false
+
+[node name="Layer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.1)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer4" type="Sprite2D" parent="ParallaxBackground/Layer4"]
+texture = ExtResource("17_udfi7")
+centered = false
+
+[node name="Layer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.1)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer3" type="Sprite2D" parent="ParallaxBackground/Layer3"]
+texture = ExtResource("18_gf2qw")
+centered = false
+
+[node name="Layer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.1)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer2" type="Sprite2D" parent="ParallaxBackground/Layer2"]
+texture = ExtResource("19_xc3l1")
+centered = false
+
+[node name="Layer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 0.1)
+motion_offset = Vector2(0, 1025)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer7" type="Sprite2D" parent="ParallaxBackground/Layer7"]
+texture = ExtResource("16_x6m52")
+centered = false
+
+[node name="Layer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.1)
+motion_mirroring = Vector2(2177, 0)
+
+[node name="Layer1" type="Sprite2D" parent="ParallaxBackground/Layer1"]
+texture = ExtResource("20_puu5j")
+centered = false
+
+[connection signal="body_shape_entered" from="Characters/Player/Weapon" to="Characters/Player/Weapon" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Characters/Player/Weapon" to="Characters/Player/Weapon" method="_on_body_shape_exited"]
+[connection signal="on_anchor_remove" from="Characters/Player/Weapon" to="Characters/Player" method="_on_weapon_on_anchor_remove"]
+[connection signal="on_anchor_set" from="Characters/Player/Weapon" to="Characters/Player" method="_on_weapon_on_anchor_set"]
+[connection signal="body_shape_entered" from="Characters/BasicEnemy/Weapon" to="Characters/BasicEnemy/Weapon" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Characters/BasicEnemy/Weapon" to="Characters/BasicEnemy/Weapon" method="_on_body_shape_exited"]
+[connection signal="on_anchor_remove" from="Characters/BasicEnemy/Weapon" to="Characters/BasicEnemy" method="_on_weapon_on_anchor_remove"]
+[connection signal="on_anchor_set" from="Characters/BasicEnemy/Weapon" to="Characters/BasicEnemy" method="_on_weapon_on_anchor_set"]
+[connection signal="body_shape_entered" from="Characters/BasicEnemy2/Weapon" to="Characters/BasicEnemy2/Weapon" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Characters/BasicEnemy2/Weapon" to="Characters/BasicEnemy2/Weapon" method="_on_body_shape_exited"]
+[connection signal="on_anchor_remove" from="Characters/BasicEnemy2/Weapon" to="Characters/BasicEnemy2" method="_on_weapon_on_anchor_remove"]
+[connection signal="on_anchor_set" from="Characters/BasicEnemy2/Weapon" to="Characters/BasicEnemy2" method="_on_weapon_on_anchor_set"]
+[connection signal="body_shape_entered" from="Characters/BasicEnemy3/Weapon" to="Characters/BasicEnemy3/Weapon" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Characters/BasicEnemy3/Weapon" to="Characters/BasicEnemy3/Weapon" method="_on_body_shape_exited"]
+[connection signal="on_anchor_remove" from="Characters/BasicEnemy3/Weapon" to="Characters/BasicEnemy3" method="_on_weapon_on_anchor_remove"]
+[connection signal="on_anchor_set" from="Characters/BasicEnemy3/Weapon" to="Characters/BasicEnemy3" method="_on_weapon_on_anchor_set"]

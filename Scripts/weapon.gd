@@ -4,7 +4,9 @@ signal on_anchor_set( anchor_position : Vector2, anchor_radius : float )
 signal on_anchor_remove
 signal on_weapon_swing_start
 signal on_weapon_swing_stop
+signal on_attack_hit
 
+var is_anchored : bool = false
 var anchor : Vector2
 var anchor_radius : float
 var anchor_body_rid : RID
@@ -12,7 +14,7 @@ var anchor_shape_index : int
 var last_pos : Vector2
 
 @onready
-var weapon_tip = $Marker2D
+var weapon_tip = $WeaponTip
 
 @export
 var weapon_damage : int = 10 
@@ -23,7 +25,7 @@ var weapon_slash_speed_min : int = 50
 @export
 var attack_cooldown : float = .01
 @export
-var anchor_cooldown : float = 0
+var anchor_cooldown : float = 0.01
 
 var attacking_swing : bool = false
 var time_after_last_attack : float = 0
@@ -86,11 +88,12 @@ func handle_damage_dealing( body: Node2D ):
 		var dir_to_body = ( body.global_position - global_position ).normalized()
 		
 		body.damage( weapon_damage, dir_to_body * weapon_knockback )
+		on_attack_hit.emit()
 
 func handle_anchoring( body_rid: RID, body: Node2D, 
 		body_shape_index: int, local_shape_index: int ) -> void:
 	
-	if( time_after_last_anchor < anchor_cooldown ):
+	if( time_after_last_anchor < anchor_cooldown || is_anchored ):
 		return
 	time_after_last_anchor = 0
 	
@@ -104,36 +107,7 @@ func handle_anchoring( body_rid: RID, body: Node2D,
 	anchor_shape_index = local_shape_index
 	
 	on_anchor_set.emit( anchor, anchor_radius )
-	
-	
-			###
-			### THIS IS HOW IT LOOKED BEFORE,
-			###     BELOW !!
-			###
-			
-	#var area_shape_owner_id = shape_find_owner( local_shape_index )
-	#var area_shape_owner = shape_owner_get_owner( area_shape_owner_id )
-	#var area_shape_2d = shape_owner_get_shape( area_shape_owner_id, 0 )
-	#var area_global_transform = area_shape_owner.global_transform
-			#
-	#var body_shape_owner_id = body.shape_find_owner( body_shape_index )
-	#var body_shape_owner = body.shape_owner_get_owner( body_shape_owner_id )
-	#var body_shape_2d = body.shape_owner_get_shape( body_shape_owner_id, 0 )
-	#var body_global_tr = body_shape_owner.global_transform
-	#
-	#var collision_points = area_shape_2d.collide_and_get_contacts( 
-		#area_global_transform,
-		#body_shape_2d,
-		#body_global_tr )
-	#
-	#if( collision_points.size() == 0 ):
-		#return
-	#
-	#anchor = collision_points[ 0 ]
-	#anchor_body_rid = body_rid
-	#anchor_radius = ( global_position - anchor ).length();
-	#
-	#on_anchor_set.emit( anchor, anchor_radius )
+	is_anchored = true
 	
 func _on_body_shape_exited( body_rid: RID, body: Node2D, 
 		body_shape_index: int, local_shape_index: int ) -> void:
@@ -145,4 +119,5 @@ func _on_body_shape_exited( body_rid: RID, body: Node2D,
 		return
 	
 	on_anchor_remove.emit()
+	is_anchored = false
 	

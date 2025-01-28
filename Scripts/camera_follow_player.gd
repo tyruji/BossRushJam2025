@@ -7,7 +7,7 @@ var player_pos_lerp_damp = 5
 var distance_to_stop = 50
 
 @onready
-var player = $"../Player"
+var player = $"../Characters/Player"
 
 func _process( delta: float ) -> void:
 	var alpha = delta * player_pos_lerp_damp
